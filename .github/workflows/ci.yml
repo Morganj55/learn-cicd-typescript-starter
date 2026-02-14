@@ -25,7 +25,7 @@ jobs:
         run: npm run test -- --coverage
 
   style:
-    name: Formatting
+    name: Style
     runs-on: ubuntu-latest
 
     steps:
@@ -42,3 +42,6 @@ jobs:
 
       - name: Run formatting check
         run: npm run format:check
+
+      - name: Lint
+        run: npm run lint
