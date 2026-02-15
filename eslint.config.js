@@ -1,6 +1,7 @@
 import js from "@eslint/js";
 import globals from "globals";
 import tseslint from "typescript-eslint";
+import pluginSecurity from "eslint-plugin-security";
 
 export default tseslint.config(
     // 1. Ignore the build folder
@@ -11,6 +12,8 @@ export default tseslint.config(
 
     // 3. Typescript recommended rules
     ...tseslint.configs.recommended,
+
+    pluginSecurity.configs.recommended,
 
     // 4. Custom overrides and Global settings
     {
