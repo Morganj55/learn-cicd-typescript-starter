@@ -12,6 +12,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
+      # --- START OF LOCAL BUILD STEPS ---
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -22,3 +23,23 @@ jobs:
 
       - name: Build
         run: npm run build
+      # --- END OF LOCAL BUILD STEPS ---
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Use gcloud CLI
+        run: gcloud info
+
+      - name: Build and Push Container
+        run: |-
+          gcloud builds submit \
+            --platform=linux/amd64 \
+            --tag us-central1-docker.pkg.dev/notley-487510/notley-ar-repo/webapp:latest .
+
+
