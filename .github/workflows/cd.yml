@@ -38,8 +38,6 @@ jobs:
 
       - name: Build and Push Container
         run: |-
-          gcloud builds submit \
-            --platform=linux/amd64 \
-            --tag us-central1-docker.pkg.dev/notley-487510/notley-ar-repo/webapp:latest .
+          gcloud builds submit --tag us-central1-docker.pkg.dev/notley-487510/notley-ar-repo/webapp:latest .
 
 
